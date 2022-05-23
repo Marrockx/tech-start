@@ -1,0 +1,64 @@
+<div class="ui container wrap">
+    <div class="ui container segment">
+        <form class="ui form" #techDataForm="ngForm"
+            (ngSubmit)="onSubmit(techDataForm.value, techDataForm); techDataForm.reset; ">
+            <h1 class="header big">Bio Data Form</h1>
+
+            <div class="two wide doubling grid fields">
+                <div class="input-field name field">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" placeholder="Enter First Name" ngModel />
+                </div>
+
+                <div class="input-field name field">
+                    <label>Last Name</label>
+                    <input type="text" id="last-name" name="last-name" placeholder="Enter Last Name" ngModel />
+                </div>
+            </div>
+
+            <div class="input-field field">
+                <label for="email-addr">Email Address</label>
+                <input type="email" id="email-addr" name="email" placeholder="Enter Email Address" ngModel />
+            </div>
+
+            <div class="input-field field">
+                <label for="phone-number">Phone Number</label>
+                <input type="number" id="phone-number" name="phone-number" placeholder="Enter Phone Number" ngModel />
+            </div>
+
+            <div class="field">
+                <label for="selectCtry">Country</label>
+                <fui-select class="selection" [(ngModel)]="selectedCountry" placeholder="Select Country"
+                    [options]="countries" labelField="name" [isSearchable]="searchable" [isDisabled]="disabled"
+                    #selectCountry name="select-country" id="selectCtry">
+                    <fui-select-option *ngFor="let country of selectCountry.filteredOptions" [value]="country">
+                    </fui-select-option>
+                </fui-select>
+            </div>
+
+            <div class="field">
+                <label for="selectOccup">Occupation</label>
+                <fui-select class="selection" [(ngModel)]="selectedOccupation" placeholder="Select Occupation"
+                    [options]="occupations" labelField="" [isSearchable]="searchable" [isDisabled]="disabled"
+                    #selectOccupation name="select-occupation" id="selectOccup">
+                    <fui-select-option *ngFor="let occupation of occupations" [value]="occupation">
+                    </fui-select-option>
+                </fui-select>
+            </div>
+
+            <div class="two grouped fields">
+                <label>Successful</label>
+                <div class="field">
+                    <fui-radio-button name="successful" value="true" [(ngModel)]="eRadio">True</fui-radio-button>
+                </div>
+                <div class="field">
+                    <fui-radio-button name="successful" value="false" [(ngModel)]="eRadio">False</fui-radio-button>
+                </div>
+            </div>
+            <button class="ui primary submit button" type="submit">
+                Submit Form
+            </button>
+        </form>
+
+
+    </div>

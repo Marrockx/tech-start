@@ -1,0 +1,43 @@
+/** @format */
+
+.submission-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.submission-page-wrap {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.submission-page-card {
+	width: 75%;
+	max-width: 600px;
+	padding: 2rem;
+
+	height: 480px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.submission-page-card--content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+}
+.submission-page-card--content .header {
+	font-size: 2.8rem;
+}
+
+.check.outline.icon {
+	margin: 2rem auto;
+}
+
+.ui.submit.button {
+	margin-top: 2rem;
+}
