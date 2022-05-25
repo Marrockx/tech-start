@@ -22,6 +22,31 @@ p {
 	padding: 3.2rem;
 }
 
-.fui-radio-button {
-	font-weight: 700;
+.error-msg.pointing.label {
+	margin-bottom: 20px;
+}
+
+.fieldLabel {
+	font-size: 1.1rem !important;
+}
+
+.radio-wrap.field:first-child {
+	padding-right: 2rem !important;
+}
+
+.btn-wrap,
+.btn-wrap:hover {
+	cursor: pointer;
+}
+
+.two.grouped.fields .radio-group {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: fit-content;
+	justify-content: space-between;
+}
+
+.error-msg.pointing.label {
+	background-color: rgb(248, 215, 222);
 }

@@ -2,63 +2,95 @@
     <div class="ui container segment">
         <h1 class="header big">Bio Data Form</h1>
         <form class="ui form" #techDataForm="ngForm"
-            (ngSubmit)="onSubmit(techDataForm.value, techDataForm); techDataForm.reset; ">
+            (ngSubmit)="onSubmit(techDataForm.value, techDataForm); techDataForm.reset; " novalidate>
 
 
             <div class="two wide doubling grid fields">
                 <div class="input-field name field">
-                    <label for="first-name">First Name</label>
-                    <input type="text" id="first-name" name="first-name" placeholder="Enter First Name" ngModel />
+                    <label class="fieldLabel" for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="firstName" placeholder="Enter First Name" [ngModel]
+                        required />
+                    <em *ngIf="techDataForm.controls['firstName']?.invalid && (techDataForm.controls['firstName']?.untouched)"
+                        class="ui pointing label error-msg ">
+                        Field is Required!</em>
                 </div>
 
                 <div class="input-field name field">
-                    <label>Last Name</label>
-                    <input type="text" id="last-name" name="last-name" placeholder="Enter Last Name" ngModel />
+                    <label class="fieldLabel">Last Name</label>
+                    <input type="text" id="last-name" name="lastName" placeholder="Enter Last Name" [ngModel]
+                        required />
+                    <em *ngIf="techDataForm.controls['lastName']?.invalid && (techDataForm.controls['lastName']?.untouched)"
+                        class="ui pointing label error-msg ">
+                        Field is Required!</em>
                 </div>
             </div>
 
             <div class="input-field field">
-                <label for="email-addr">Email Address</label>
-                <input type="email" id="email-addr" name="email" placeholder="Enter Email Address" ngModel />
+                <label class="fieldLabel" for="email-addr">Email Address</label>
+                <em *ngIf="techDataForm.controls['email']?.invalid && (techDataForm.controls['email']?.untouched)"
+                    class="ui pointing below label error-msg ">
+                    Field is Required and must match email format!</em>
+                <input type="email" id="email-addr" name="email" placeholder="Enter Email Address" [ngModel] required />
             </div>
 
             <div class="input-field field">
-                <label for="phone-number">Phone Number</label>
-                <input type="number" id="phone-number" name="phone-number" placeholder="Enter Phone Number" ngModel />
+                <label class="fieldLabel" for="phone-number">Phone Number</label>
+                <em *ngIf="techDataForm.controls['phoneNumber']?.invalid && (techDataForm.controls['phoneNumber']?.untouched)"
+                    class="ui pointing below label error-msg ">
+                    Field is Required and must be number!</em>
+                <input type="number" id="phone-number" name="phoneNumber" placeholder="Enter Phone Number" [ngModel]
+                    required />
             </div>
 
             <div class="field">
-                <label for="selectCtry">Country</label>
+                <label class="fieldLabel" for="selectCtry">Country</label>
+                <em *ngIf="techDataForm.controls['select-country']?.invalid && (techDataForm.controls['select-country']?.untouched)"
+                    class="ui pointing below label error-msg ">
+                    Country must be Selected!</em>
                 <fui-select class="selection" [(ngModel)]="selectedCountry" placeholder="Select Country"
                     [options]="countries" labelField="name" [isSearchable]="searchable" [isDisabled]="disabled"
-                    #selectCountry name="select-country" id="selectCtry">
+                    #selectCountry name="select-country" id="selectCtry" required>
                     <fui-select-option *ngFor="let country of selectCountry.filteredOptions" [value]="country">
                     </fui-select-option>
                 </fui-select>
             </div>
 
             <div class="field">
-                <label for="selectOccup">Occupation</label>
+                <label class="fieldLabel" for="selectOccup">Occupation</label>
+                <em *ngIf="techDataForm.controls['select-occupation']?.invalid && (techDataForm.controls['select-occupation']?.untouched)"
+                    class="ui pointing below label error-msg ">
+                    Occupation must be Selected!</em>
                 <fui-select class="selection" [(ngModel)]="selectedOccupation" placeholder="Select Occupation"
                     [options]="occupations" labelField="" [isSearchable]="searchable" [isDisabled]="disabled"
-                    #selectOccupation name="select-occupation" id="selectOccup">
+                    #selectOccupation name="select-occupation" id="selectOccup" required>
                     <fui-select-option *ngFor="let occupation of occupations" [value]="occupation">
                     </fui-select-option>
                 </fui-select>
             </div>
 
             <div class="two grouped fields">
-                <label>Successful</label>
-                <div class="field">
-                    <fui-radio-button name="successful" value="true" [(ngModel)]="eRadio">True</fui-radio-button>
-                </div>
-                <div class="field">
-                    <fui-radio-button name="successful" value="false" [(ngModel)]="eRadio">False</fui-radio-button>
+                <label class="fieldLabel">Successful</label>
+                <div class="radio-group">
+                    <div class="inline field radio-wrap">
+                        <fui-radio-button class="radio-btn" name="successful" value="true" [(ngModel)]="eRadio">True
+                        </fui-radio-button>
+                    </div>
+
+                    <div class="inline field radio-wrap">
+                        <fui-radio-button class="radio-btn" name="successful" value="false" [(ngModel)]="eRadio">False
+                        </fui-radio-button>
+                    </div>
+
+                    <em *ngIf="(techDataForm.controls['successful']?.pristine)"
+                        class="ui left pointing label error-msg ">
+                        Choose a suitable option!</em>
                 </div>
             </div>
-            <button class="ui primary submit button" type="submit">
+
+            <button class="ui primary submit button" [disabled]="(!eRadio || techDataForm.invalid)" type="submit">
                 Submit Form
             </button>
+
         </form>
 
 

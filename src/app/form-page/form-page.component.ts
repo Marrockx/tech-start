@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, NgForm} from "@angular/forms";
+import {FormGroup, FormControl, NgForm, Validators} from "@angular/forms";
 import { Router } from "@angular/router";
 import { MyserviceService } from '../myservice.service';
 import { NgToastService } from 'ng-angular-popup';
@@ -11,10 +11,10 @@ export interface IOption {
 
 export interface FormInterface{
 
-  'first-name': string,
-  'last-name': string,
+  'firstName': string,
+  'lastName': string,
   'email':string,
-  'phone-number': number,
+  'phoneNumber': number,
   'select-country': string,
   'select-occupation': string,
   'successful': boolean | string
@@ -26,6 +26,9 @@ export interface FormInterface{
   styleUrls: ['./form-page.component.css']
 })
 export class FormPageComponent implements OnInit {
+
+  
+  mouseOverBtn:boolean = false;
 
   searchable: boolean = false;
   disabled: boolean = false;
@@ -46,6 +49,7 @@ export class FormPageComponent implements OnInit {
 
   constructor(private router: Router, private myservice: MyserviceService, private toast: NgToastService) {
     
+   
   }
 
   ngOnInit(): void {
@@ -58,7 +62,7 @@ export class FormPageComponent implements OnInit {
   
 
   onSubmit(data: FormInterface, form:NgForm){
-  if(data.successful==true|| data.successful=="true"){
+  if(data.successful=="true"){
     this.toast.success({
       detail: "Submitted", 
       summary: "Successfully submitted", 
@@ -73,9 +77,9 @@ export class FormPageComponent implements OnInit {
       duration: 5000})
   }
   form.resetForm();
-  if(data){
-    form.enabled;
-  }
+  // if(data){
+  //   form.enabled;
+  // }
   }
 
 }

@@ -30,7 +30,6 @@ import { MatIcon } from '@angular/material/icon';
     NgToastModule,
     NoopAnimationsModule,
     MatIconModule,
-    // MatIcon
   ],
   providers: [MyserviceService],
   bootstrap: [AppComponent]
